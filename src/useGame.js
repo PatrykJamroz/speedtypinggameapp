@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function useGame() {
   const START_TIME = 2;
@@ -7,9 +7,13 @@ function useGame() {
   const [isGameRunning, setIsGameRunning] = useState(false);
   const [text, setText] = useState("");
   const [wordCount, setWordCount] = useState(0);
+  const inputBox = useRef(null);
 
   function startGame() {
     setIsGameRunning(true);
+    setText("");
+    inputBox.current.disabled = false;
+    inputBox.current.focus();
   }
 
   function endGame() {
@@ -38,7 +42,15 @@ function useGame() {
     }
   }, [timeRemaining, isGameRunning]);
 
-  return { timeRemaining, startGame, text, wordCount, handleChange };
+  return {
+    timeRemaining,
+    startGame,
+    text,
+    wordCount,
+    handleChange,
+    isGameRunning,
+    inputBox,
+  };
 }
 
 export default useGame;
