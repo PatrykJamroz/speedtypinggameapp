@@ -5,7 +5,7 @@ function useGame() {
   const [isGameRunning, setIsGameRunning] = useState(false);
   const [text, setText] = useState("");
   const [wordCount, setWordCount] = useState(0);
-  const [newTimeVal, setNewTimeVal] = useState(0);
+  const [newTimeVal, setNewTimeVal] = useState(5);
   const inputBox = useRef(null);
 
   function startGame() {
