@@ -11,6 +11,9 @@ function App() {
     handleChange,
     isGameRunning,
     inputBox,
+    newTimeVal,
+    handleSetNewTimeVal,
+    handleSubmit,
   } = useGame();
 
   return (
@@ -23,10 +26,20 @@ function App() {
         ref={inputBox}
       />
       <h3>Time remaining: {timeRemaining}</h3>
-      <h4>Words count: {wordCount}</h4>
+      <form onSubmit={handleSubmit}>
+        <input
+          type={text}
+          value={newTimeVal}
+          onChange={handleSetNewTimeVal}
+          disabled={isGameRunning}
+        />
+        <input type="submit" value="Set timer" disabled={isGameRunning} />
+      </form>
+      <br />
       <button onClick={startGame} disabled={isGameRunning}>
         Start Game!
       </button>
+      <h4>Words count: {wordCount}</h4>
     </div>
   );
 }
